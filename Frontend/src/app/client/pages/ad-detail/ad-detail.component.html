@@ -1,0 +1,126 @@
+<div class="ad-container" *ngIf="ad">
+  <!-- Service Header -->
+  <div class="service-header">
+    <div class="service-image">
+      <img [src]="avatarUrl" [alt]="ad.serviceName" />
+    </div>
+    <div class="service-info">
+      <h1 class="service-title">{{ ad.serviceName }}</h1>
+      <div class="service-details">
+        <div class="detail-item">
+          <span class="label">
+            <i nz-icon nzType="dollar" class="detail-icon"></i>
+            Price:
+          </span>
+          <span class="value price">${{ ad.price }}</span>
+        </div>
+        <div class="detail-item description">
+          <span class="label">
+            <i nz-icon nzType="file-text" class="detail-icon"></i>
+            Description:
+          </span>
+          <span class="value">{{ ad.description }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">
+            <i nz-icon nzType="team" class="detail-icon"></i>
+            Company:
+          </span>
+          <span class="value">{{ ad.companyName }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Section -->
+  <div class="booking-section">
+    <div class="booking-card">
+      <h2 class="booking-title">
+        <i nz-icon nzType="calendar" class="booking-icon"></i>
+        Book This Service
+      </h2>
+
+      <form [formGroup]="validateForm" class="booking-form">
+        <div class="form-group">
+          <label class="form-label">
+            <i nz-icon nzType="calendar" class="label-icon"></i>
+            Select Date
+          </label>
+          <nz-date-picker
+            formControlName="bookDate"
+            name="bookDate"
+            id="bookDate"
+            class="date-picker"
+            nzPlaceHolder="Choose your preferred date"
+            [nzDisabledDate]="disabledDate"
+          >
+          </nz-date-picker>
+        </div>
+
+        <button
+          nz-button
+          nzType="primary"
+          class="book-button"
+          [disabled]="validateForm.invalid"
+          (click)="bookService()"
+        >
+          <i nz-icon nzType="check-circle" class="button-icon"></i>
+          Book Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="reviews-section">
+    <h2 class="section-title">
+      <i nz-icon nzType="star" class="review-icon"></i>
+      Customer Reviews
+    </h2>
+
+    <div class="reviews-grid" *ngIf="reviews?.length; else noReviews">
+      <div
+        class="review-card"
+        *ngFor="let review of reviews; trackBy: trackByReviewId"
+      >
+        <div class="review-header">
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">
+              {{ getInitials(review.clientName) }}
+            </div>
+            <div class="reviewer-details">
+              <h4 class="reviewer-name">{{ review.clientName }}</h4>
+              <span class="review-date">{{
+                review.reviewDate | date : "MMM dd, yyyy"
+              }}</span>
+            </div>
+          </div>
+          <div class="rating">
+            <nz-rate
+              [ngModel]="review.rating"
+              nzDisabled
+              nzAllowHalf="false"
+              class="review-stars"
+            >
+            </nz-rate>
+          </div>
+        </div>
+
+        <div class="review-content">
+          <p class="review-text">{{ review.review }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Reviews State -->
+    <ng-template #noReviews>
+      <div class="no-reviews">
+        <div class="no-reviews-content">
+          <i nz-icon nzType="message" class="no-reviews-icon"></i>
+          <h3>No Reviews Yet</h3>
+          <p>Be the first to book this service and leave a review!</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

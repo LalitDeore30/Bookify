@@ -1,0 +1,847 @@
+// ========================================
+// VARIABLES
+// ========================================
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$accent-color: #f093fb;
+$text-dark: #2d3748;
+$text-light: #718096;
+$white: #ffffff;
+$gray-100: #f7fafc;
+$gray-200: #edf2f7;
+$gray-300: #e2e8f0;
+$shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-heavy: 0 10px 15px rgba(0, 0, 0, 0.1);
+$border-radius: 12px;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ========================================
+// GLOBAL STYLES
+// ========================================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: $text-dark;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+// ========================================
+// NAVBAR STYLES
+// ========================================
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: $transition;
+  padding: 1rem 0;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+
+  &.navbar-scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: $shadow-medium;
+    padding: 0.75rem 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  .brand-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, $primary-color, $secondary-color, $accent-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    color: $text-dark;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: $border-radius;
+    transition: $transition;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+      background: rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      color: $primary-color;
+      background: rgba(102, 126, 234, 0.1);
+      font-weight: 600;
+    }
+
+    &.logout-btn {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: $white;
+      font-weight: 600;
+
+      &:hover {
+        background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+        transform: translateY(-2px);
+        box-shadow: $shadow-medium;
+      }
+    }
+  }
+}
+
+// ========================================
+// BURGER MENU
+// ========================================
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: #1a1a1a;
+    margin: 3px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+      background: #007bff;
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+      background: #007bff;
+    }
+  }
+}
+
+// ========================================
+// MOBILE MENU OVERLAY
+// ========================================
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: $transition;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ========================================
+// MAIN CONTENT
+// ========================================
+.main-content {
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+  padding: 2rem 0;
+}
+
+// ========================================
+// RESPONSIVE DESIGN
+// ========================================
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border-top: 1px solid #e9ecef;
+
+    &.active {
+      left: 0;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
+
+      .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        color: #1a1a1a;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #007bff;
+          color: white;
+          transform: translateX(5px);
+        }
+
+        &.active {
+          background: #007bff;
+          color: white;
+          border-color: #007bff;
+        }
+
+        &.logout-btn {
+          background: #dc3545;
+          color: white;
+          border: none;
+
+          &:hover {
+            background: #c82333;
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+  }
+
+  .burger-menu {
+    display: flex !important;
+  }
+
+  .nav-brand .brand-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 0.75rem;
+  }
+
+  .nav-brand .brand-text {
+    font-size: 1.1rem;
+  }
+
+  .main-content {
+    margin-top: 70px;
+    padding: 1rem 0;
+  }
+
+  .nav-menu {
+    padding: 1.5rem;
+
+    .nav-links .nav-link {
+      padding: 0.875rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+
+
+// ========================================
+// ANIMATIONS
+// ========================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.nav-menu.active .nav-links .nav-link {
+  animation: slideInRight 0.3s ease forwards;
+
+  &:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  &:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+}
+
+// ========================================
+// GLOBAL STYLES
+// ========================================
+img {
+  width: 180px;
+  transition: $transition-smooth;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.img_profile {
+  width: 25px;
+  border-radius: 50%;
+  transition: $transition-smooth;
+}
+
+img.logo {
+  width: 100px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+
+
+
+
+// ========================================
+// BUTTON COMPONENTS
+// ========================================
+.ant-btn {
+  border-radius: $border-radius;
+  transition: $transition-smooth;
+  font-weight: 500;
+
+  &:hover {
+    color: $white;
+    background: $secondary-color;
+    transform: translateY(-2px);
+    box-shadow: $shadow-medium;
+  }
+}
+
+.active-button {
+  border-radius: $border-radius !important;
+  padding: 8px 16px !important;
+  background: $secondary-color;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: $transition-smooth;
+}
+
+.trigger {
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0px;
+  background-color: transparent;
+  border-radius: $border-radius;
+  transition: $transition-smooth;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+}
+
+// ========================================
+// SIDEBAR COMPONENTS
+// ========================================
+.sidebar-component {
+  padding: 0px 40px 0px;
+  background: linear-gradient(180deg, $primary-color 0%, darken($primary-color, 5%) 100%);
+  box-shadow: $shadow-medium;
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  &.ant-layout-sider-collapsed {
+    padding: 20px 0px;
+
+    .ant-menu-item {
+      padding: 0px 19px !important;
+    }
+
+    .ant-menu-item .anticon {
+      margin: 0px auto !important;
+    }
+  }
+
+  .profile-avatar {
+    display: none;
+  }
+
+  .sidebar-logo {
+    background-size: 50%;
+    background-position: center top -3px;
+  }
+
+  .ant-menu-item-selected {
+    color: #ffffff;
+    background-color: transparent;
+
+    &:focus,
+    &:visited,
+    &:active {
+      background-color: transparent;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+}
+
+.sidebar-component-display {
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+}
+
+.sidebar-logo {
+  min-height: 64px;
+  margin-bottom: 20px;
+  background-size: 85%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: $border-radius;
+  transition: $transition-smooth;
+}
+
+.sidebar-logo-mobile {
+  min-height: 64px;
+  margin-bottom: 20px;
+  background-size: 85%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: $border-radius;
+}
+
+// ========================================
+// MOBILE SIDEBAR
+// ========================================
+.mobile-sidenav {
+  &.ant-layout-sider {
+    position: fixed;
+    top: 0px;
+    background: linear-gradient(180deg, $primary-color 0%, darken($primary-color, 5%) 100%);
+    height: 100vh;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    box-shadow: $shadow-medium;
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0px;
+  background: linear-gradient(180deg, $primary-color 0%, darken($primary-color, 5%) 100%);
+  box-shadow: $shadow-medium;
+  height: 100vh;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+
+  @media only screen and (min-width: 992px) {
+    display: none;
+  }
+}
+
+// ========================================
+// MENU COMPONENTS
+// ========================================
+.ant-menu {
+  background-color: transparent;
+
+  &-inline,
+  &-vertical,
+  &-vertical-left {
+    border-right: 0px;
+  }
+}
+
+.ant-menu-submenu {
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #808191;
+  margin: 0px;
+  padding: 0px !important;
+  transition: $transition-smooth;
+}
+
+.ant-menu-item {
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: #808191;
+  margin: 0px;
+  padding: 0px !important;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: $border-radius;
+  transition: $transition-smooth;
+
+  &:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+
+    .anticon {
+      background-color: #ff7800;
+      transform: scale(1.1);
+    }
+  }
+
+  &::after {
+    display: none;
+  }
+
+  &-selected {
+    color: #fff;
+    background-color: transparent;
+  }
+}
+
+.ant-menu-light {
+  .ant-menu-item {
+    &:hover {
+      color: #ffffff;
+    }
+
+    &-active,
+    &-hover {
+      color: #ffffff !important;
+    }
+  }
+
+  .ant-menu-submenu {
+
+    &-active,
+    &-title:hover {
+      color: #ffffff !important;
+    }
+  }
+
+  .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+    color: #ffffff !important;
+  }
+}
+
+// ========================================
+// ICON COMPONENTS
+// ========================================
+.anticon {
+  min-width: 32px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  border-radius: $border-radius;
+  background: linear-gradient(135deg, #ff7800 0%, #ff9500 100%);
+  transition: $transition-smooth;
+  box-shadow: 0 2px 8px rgba(255, 120, 0, 0.3);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(255, 120, 0, 0.4);
+  }
+}
+
+// ========================================
+// PROFILE COMPONENTS
+// ========================================
+.profile-avatar {
+  text-align: center;
+  border-bottom: 1px solid rgba(52, 55, 60, 0.3);
+  margin-bottom: 30px;
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: $border-radius;
+
+  h3 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #808191;
+    margin: 19px 0px 30px;
+    transition: $transition-smooth;
+  }
+}
+
+.user-profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0px auto;
+  overflow: hidden;
+  box-shadow: $shadow-medium;
+  transition: $transition-smooth;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: $transition-smooth;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+
+    img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 767px) {
+    margin-top: 20px;
+  }
+
+  .ant-avatar {
+    width: 39px;
+    height: 39px;
+    margin-right: 10px;
+    border-radius: 50%;
+    box-shadow: $shadow-light;
+    transition: $transition-smooth;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.user-profile-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .profile-account-trigger {
+    a {
+      font-weight: 600;
+      font-size: 16px;
+      color: #324160;
+      display: flex;
+      align-items: center;
+      transition: $transition-smooth;
+
+      &:hover {
+        color: darken(#324160, 10%);
+      }
+
+      & span {
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden !important;
+        display: block;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.user-account {
+  display: flex;
+  align-items: center;
+}
+
+// ========================================
+// LAYOUT COMPONENTS
+// ========================================
+.inner-content {
+  background: linear-gradient(135deg, #fdfdfd 0%, #f8f9fa 100%);
+  min-height: calc(100vh - 0px);
+
+  .layout-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-bottom: 1px solid rgba(235, 239, 242, 0.5);
+    position: relative;
+    min-height: 90px;
+    height: initial;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    box-shadow: $shadow-light;
+
+    @media only screen and (max-width: 767px) {
+      flex-direction: column;
+      padding: 15px;
+    }
+  }
+}
+
+.ant-layout {
+  &.ant-layout-has-sider {
+    flex-direction: column;
+  }
+}
+
+// ========================================
+// ANGULAR DEEP SELECTORS
+// ========================================
+::ng-deep {
+  .ant-layout-sider-zero-width-trigger {
+    background-color: $secondary-color;
+    top: 80px;
+    border-radius: 0 $border-radius $border-radius 0;
+    transition: $transition-smooth;
+
+    &:hover {
+      background-color: lighten($secondary-color, 10%);
+    }
+  }
+
+  .ant-dropdown-link {
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: $border-radius;
+    transition: $transition-smooth;
+  }
+
+  .ant-menu-dark.ant-menu-inline .ant-menu-item {
+    padding: 0px !important;
+  }
+
+  .ant-menu-item:active,
+  .ant-menu-submenu-title:active,
+  .ant-menu-submenu>.ant-menu {
+    background-color: transparent;
+  }
+
+  .mobile-sidebar {
+    .ant-layout-sider-zero-width-trigger {
+      background: $primary-color;
+      border-radius: 0px 5px 5px 0px;
+      opacity: 1;
+      transition: $transition-smooth;
+
+      &:hover {
+        background: lighten($primary-color, 10%);
+      }
+    }
+  }
+}

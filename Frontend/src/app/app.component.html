@@ -1,0 +1,126 @@
+<!-- Modern Responsive Navbar -->
+<nav class="navbar" [class.navbar-scrolled]="isScrolled">
+  <div class="nav-container">
+    <!-- Logo/Brand -->
+    <div class="nav-brand">
+      <h2 class="brand-text">Bookify</h2>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="nav-menu" [class.active]="isMenuOpen">
+      <!-- For non-logged in users -->
+      <div *ngIf="!isClientLoggedIn && !isCompanyLoggedIn" class="nav-links">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Home</a
+        >
+        <a
+          routerLink="/register_client"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Register as Client</a
+        >
+        <a
+          routerLink="/register_company"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Register as Company</a
+        >
+        <a
+          routerLink="/login"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Login</a
+        >
+      </div>
+
+      <!-- For logged in clients -->
+      <div *ngIf="isClientLoggedIn" class="nav-links">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Home</a
+        >
+        <a
+          routerLink="/client/dashboard"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Dashboard</a
+        >
+        <a
+          routerLink="/client/bookings"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Bookings</a
+        >
+        <a (click)="logout(); closeMenu()" class="nav-link logout-btn"
+          >Logout</a
+        >
+      </div>
+
+      <!-- For logged in companies -->
+      <div *ngIf="isCompanyLoggedIn" class="nav-links">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Home</a
+        >
+        <a
+          routerLink="/company/dashboard"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Dashboard</a
+        >
+        <a
+          routerLink="/company/ad"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >Post Ad</a
+        >
+        <a
+          routerLink="/company/ads"
+          routerLinkActive="active"
+          class="nav-link"
+          (click)="closeMenu()"
+          >My Ads</a
+        >
+        <a (click)="logout(); closeMenu()" class="nav-link logout-btn"
+          >Logout</a
+        >
+      </div>
+    </div>
+
+    <!-- Burger Menu for Mobile -->
+    <div class="burger-menu" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div
+  class="mobile-menu-overlay"
+  [class.active]="isMenuOpen"
+  (click)="closeMenu()"
+></div>
+
+<!-- Main Content -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,32 @@
+.reviews-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ad-header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-card {
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.rating {
+  .star {
+    transition: color 0.2s ease;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-container {
+    padding: 10px;
+  }
+  
+  .review-card {
+    padding: 15px;
+  }
+}

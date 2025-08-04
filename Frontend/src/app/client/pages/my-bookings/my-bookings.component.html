@@ -1,0 +1,53 @@
+<div class="bookings-container">
+  <div class="bookings-header">
+    <h1 class="bookings-title">My Bookings</h1>
+    <p class="bookings-subtitle">
+      Track your service bookings and leave reviews
+    </p>
+  </div>
+
+  <nz-table
+    [nzData]="bookedServices"
+    #basicTable
+    [nzPageSize]="20"
+    [nzShowPagination]="false"
+  >
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of basicTable.data">
+        <td style="font-weight: 600">{{ booking.serviceName }}</td>
+        <td>{{ booking.bookDate | date : "dd/MM/yyyy" }}</td>
+        <td
+          style="font-weight: 600"
+          [ngClass]="{
+            'status-pending': booking.reservationStatus === 'PENDING',
+            'status-approved': booking.reservationStatus === 'APPROVED',
+            'status-rejected': booking.reservationStatus === 'REJECTED'
+          }"
+        >
+          {{ booking.reservationStatus }}
+        </td>
+        <td>
+          <span *ngIf="booking.reviewStatus == 'FALSE'">
+            <button
+              nzSize="small"
+              nz-button
+              nzType="primary"
+              nzDanger
+              routerLink="/client/review/{{ booking.id }}"
+            >
+              Review
+            </button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

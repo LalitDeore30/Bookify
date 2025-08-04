@@ -1,0 +1,323 @@
+// ========================================
+// VARIABLES
+// ========================================
+$primary-blue: #007bff;
+$primary-green: #28a745;
+$text-dark: #1a1a1a;
+$text-gray: #666;
+$text-light: #555;
+$white: #ffffff;
+$light-gray: #f8f9fa;
+$border-gray: #e9ecef;
+$orange: #fd7e14;
+$transition: all 0.3s ease;
+
+// ========================================
+// MAIN SIGNUP SECTION
+// ========================================
+.signup-section {
+  min-height: 100vh;
+  background: $light-gray;
+  padding: 4rem 0;
+}
+
+.signup-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// ========================================
+// HEADER SECTION
+// ========================================
+.header-section {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  .main-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .main-subtitle {
+    font-size: 1.25rem;
+    color: $text-gray;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.features-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $text-light;
+    font-weight: 500;
+
+    i {
+      font-size: 1.2rem;
+      color: $primary-blue;
+    }
+  }
+}
+
+// ========================================
+// CARDS SECTION
+// ========================================
+.cards-section {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.registration-card {
+  background: $white;
+  border-radius: 16px;
+  padding: 3rem;
+  border: 1px solid $border-gray;
+  transition: $transition;
+  width: 100%;
+  max-width: 500px;
+  flex: 1;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 1rem;
+  }
+}
+
+.card-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  color: $white;
+}
+
+.client-card {
+  .card-icon {
+    background: $primary-blue;
+  }
+
+  .card-badge {
+    background: $primary-green;
+  }
+
+  .card-feature i {
+    color: $primary-blue;
+  }
+}
+
+.company-card {
+  .card-icon {
+    background: $primary-green;
+  }
+
+  .card-badge {
+    background: $orange;
+  }
+
+  .card-feature i {
+    color: $primary-green;
+  }
+}
+
+.card-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: $white;
+}
+
+.card-description {
+  color: $text-gray;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.card-features {
+  margin-bottom: 2.5rem;
+
+  .card-feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: $text-light;
+    font-weight: 500;
+
+    i {
+      font-size: 1.2rem;
+      width: 20px;
+    }
+  }
+}
+
+// ========================================
+// BUTTONS
+// ========================================
+.register-btn {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: $white;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.client-btn {
+  background: $primary-blue;
+
+  &:hover {
+    background: #0056b3;
+  }
+}
+
+.company-btn {
+  background: $primary-blue;
+
+  &:hover {
+    background: #0056b3;
+  }
+}
+
+// ========================================
+// LOGIN SECTION
+// ========================================
+.login-section {
+  text-align: center;
+  margin-top: 3rem;
+
+  .login-text {
+    color: $text-gray;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+.login-btn {
+  background: transparent;
+  color: $primary-blue;
+  border: 2px solid $primary-blue;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+
+  &:hover {
+    background: $primary-blue;
+    color: $white;
+    transform: translateY(-2px);
+  }
+}
+
+// ========================================
+// RESPONSIVE DESIGN
+// ========================================
+@media (max-width: 768px) {
+  .signup-content {
+    padding: 0 1rem;
+  }
+
+  .header-section {
+    .main-title {
+      font-size: 2.5rem;
+    }
+
+    .main-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  .features-row {
+    gap: 1.5rem;
+  }
+
+  .cards-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .registration-card {
+    padding: 2rem;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-section {
+    .main-title {
+      font-size: 2rem;
+    }
+  }
+
+  .features-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .registration-card {
+    padding: 1.5rem;
+
+    .card-header h3 {
+      font-size: 1.5rem;
+    }
+  }
+}

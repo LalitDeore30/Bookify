@@ -1,0 +1,63 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Company Dashboard</h1>
+    <p class="dashboard-subtitle">
+      Manage your service bookings and client requests
+    </p>
+  </div>
+
+  <nz-table
+    #basicTable
+    [nzData]="bookings"
+    [nzPageSize]="20"
+    [nzShowPagination]="false"
+  >
+    <thead>
+      <tr>
+        <th>Client Name</th>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of basicTable.data">
+        <td style="font-weight: 600">{{ booking.clientName }}</td>
+        <td style="font-weight: 600">{{ booking.serviceName }}</td>
+        <td>{{ booking.bookDate | date : "dd/MM/yyyy" }}</td>
+        <td
+          style="font-weight: 600"
+          [ngClass]="{
+            'status-pending': booking.reservationStatus === 'PENDING',
+            'status-approved': booking.reservationStatus === 'APPROVED',
+            'status-rejected': booking.reservationStatus === 'REJECTED'
+          }"
+        >
+          {{ booking.reservationStatus }}
+        </td>
+        <td>
+          <span *ngIf="booking.reservationStatus == 'PENDING'">
+            <button
+              nzSize="small"
+              nz-button
+              nzType="primary"
+              (click)="changeBookingStatus(booking.id, 'Approve')"
+            >
+              Approve
+            </button>
+            <button
+              nzSize="small"
+              nz-button
+              nzType="primary"
+              nzDanger
+              (click)="changeBookingStatus(booking.id, 'Reject')"
+            >
+              Reject
+            </button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

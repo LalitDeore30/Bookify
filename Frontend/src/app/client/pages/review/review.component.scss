@@ -1,0 +1,94 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.child {
+  width: 500px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e8e8e8;
+}
+
+.imgDiv {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.imgDiv h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-left: 0 !important;
+  /* Override inline style */
+}
+
+nz-form-item {
+  margin-bottom: 20px;
+}
+
+nz-form-control {
+  width: 100%;
+}
+
+textarea.nz-input {
+  resize: vertical;
+  min-height: 120px;
+  border-radius: 8px;
+  padding: 12px;
+  transition: all 0.3s;
+}
+
+textarea.nz-input:focus {
+  border-color: #40a9ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ant-rate-star {
+  font-size: 28px;
+  color: #fadb14;
+}
+
+.login-form-button {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.login-form-button:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.login-form-margin {
+  margin-top: 24px;
+}
+
+/* Optional: Add a subtle animation for a more dynamic feel */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.child {
+  animation: fadeInUp 0.6s ease-out;
+}

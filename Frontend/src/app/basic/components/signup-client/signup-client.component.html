@@ -1,0 +1,237 @@
+<div class="signup-container">
+  <div class="signup-card">
+    <div class="signup-header">
+      <h1 class="signup-title">
+        <i nz-icon nzType="user-add" class="title-icon"></i>
+        Client Registration
+      </h1>
+      <p class="signup-subtitle">Create your account to access our services</p>
+    </div>
+
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+      class="signup-form"
+    >
+      <!-- Email Field -->
+      <nz-form-item>
+        <nz-form-control nzHasFeedback>
+          <nz-input-group nzPrefixIcon="mail">
+            <input
+              nz-input
+              placeholder="Enter your email address"
+              formControlName="email"
+              type="email"
+            />
+          </nz-input-group>
+          <div
+            *ngIf="
+              validateForm.get('email')?.invalid &&
+              validateForm.get('email')?.touched
+            "
+            class="error-message"
+          >
+            <span *ngIf="validateForm.get('email')?.errors?.['required']"
+              >Email is required</span
+            >
+            <span *ngIf="validateForm.get('email')?.errors?.['email']"
+              >Please enter a valid email address</span
+            >
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Name Field -->
+      <nz-form-item>
+        <nz-form-control nzHasFeedback>
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              nz-input
+              placeholder="Enter your first name"
+              formControlName="name"
+            />
+          </nz-input-group>
+          <div
+            *ngIf="
+              validateForm.get('name')?.invalid &&
+              validateForm.get('name')?.touched
+            "
+            class="error-message"
+          >
+            <span *ngIf="validateForm.get('name')?.errors?.['required']"
+              >First name is required</span
+            >
+            <span *ngIf="validateForm.get('name')?.errors?.['minlength']"
+              >First name must be at least 2 characters</span
+            >
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Last Name Field -->
+      <nz-form-item>
+        <nz-form-control nzHasFeedback>
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              nz-input
+              placeholder="Enter your last name"
+              formControlName="lastname"
+            />
+          </nz-input-group>
+          <div
+            *ngIf="
+              validateForm.get('lastname')?.invalid &&
+              validateForm.get('lastname')?.touched
+            "
+            class="error-message"
+          >
+            <span *ngIf="validateForm.get('lastname')?.errors?.['required']"
+              >Last name is required</span
+            >
+            <span *ngIf="validateForm.get('lastname')?.errors?.['minlength']"
+              >Last name must be at least 2 characters</span
+            >
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Phone Field -->
+      <nz-form-item>
+        <nz-form-control nzHasFeedback>
+          <nz-input-group nzPrefixIcon="phone">
+            <input
+              nz-input
+              placeholder="(XXX) XXX-XXXX"
+              formControlName="phone"
+              (input)="onPhoneInput($event)"
+              maxlength="14"
+            />
+          </nz-input-group>
+          <div
+            *ngIf="
+              validateForm.get('phone')?.invalid &&
+              validateForm.get('phone')?.touched
+            "
+            class="error-message"
+          >
+            <span *ngIf="validateForm.get('phone')?.errors?.['required']"
+              >Phone number is required</span
+            >
+            <span *ngIf="validateForm.get('phone')?.errors?.['phoneNumber']"
+              >Please enter a valid 10-digit phone number</span
+            >
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Password Field -->
+      <nz-form-item>
+        <nz-form-control nzHasFeedback>
+          <nz-input-group nzPrefixIcon="lock">
+            <input
+              nz-input
+              type="password"
+              placeholder="Create a strong password"
+              formControlName="password"
+            />
+          </nz-input-group>
+
+          <!-- Password Strength Indicator -->
+          <div
+            class="password-strength"
+            *ngIf="validateForm.get('password')?.value"
+          >
+            <div class="strength-bar">
+              <div
+                class="strength-fill"
+                [style.width]="getPasswordStrengthWidth()"
+                [style.background-color]="getPasswordStrengthColor()"
+              ></div>
+            </div>
+            <span
+              class="strength-text"
+              [style.color]="getPasswordStrengthColor()"
+            >
+              {{ passwordStrength.level | titlecase }} Password
+            </span>
+          </div>
+
+          <div
+            *ngIf="
+              validateForm.get('password')?.invalid &&
+              validateForm.get('password')?.touched
+            "
+            class="error-message"
+          >
+            <span *ngIf="validateForm.get('password')?.errors?.['required']"
+              >Password is required</span
+            >
+            <div
+              *ngIf="validateForm.get('password')?.errors?.['strongPassword']"
+              class="password-requirements"
+            >
+              <p>Password must contain:</p>
+              <ul>
+                <li *ngFor="let requirement of passwordStrength.feedback">
+                  {{ requirement }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Confirm Password Field -->
+      <nz-form-item>
+        <nz-form-control nzHasFeedback>
+          <nz-input-group nzPrefixIcon="lock">
+            <input
+              nz-input
+              type="password"
+              placeholder="Confirm your password"
+              formControlName="checkPassword"
+            />
+          </nz-input-group>
+          <div
+            *ngIf="
+              validateForm.get('checkPassword')?.invalid &&
+              validateForm.get('checkPassword')?.touched
+            "
+            class="error-message"
+          >
+            <span
+              *ngIf="validateForm.get('checkPassword')?.errors?.['required']"
+              >Please confirm your password</span
+            >
+            <span
+              *ngIf="validateForm.get('checkPassword')?.errors?.['confirmPassword']"
+              >Passwords do not match</span
+            >
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Submit Button -->
+      <nz-form-item class="submit-section">
+        <button
+          nz-button
+          nzType="primary"
+          nzSize="large"
+          class="submit-button"
+          [nzLoading]="false"
+          [disabled]="validateForm.invalid"
+        >
+          <i nz-icon nzType="user-add"></i>
+          Create Account
+        </button>
+      </nz-form-item>
+
+      <!-- Login Link -->
+      <div class="login-link">
+        Already have an account?
+        <a routerLink="/login" class="link">Sign in here</a>
+      </div>
+    </form>
+  </div>
+</div>

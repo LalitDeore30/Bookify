@@ -1,0 +1,440 @@
+/* Background and container layout */
+.bg {
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Form parent */
+.parent {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 30px;
+  box-sizing: border-box;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+/* Form fields */
+input[nz-input] {
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid #dcdfe6;
+  padding: 0 15px;
+  font-size: 15px;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+input[nz-input]:focus {
+  border-color: #409eff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+/* Error tip text */
+[nzErrorTip] {
+  font-size: 13px;
+  color: #f56c6c;
+  margin-top: 4px;
+}
+
+/* Button styling */
+.login-form-button {
+  width: 100%;
+  background-color: #409eff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  height: 45px;
+  font-size: 16px;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+}
+
+.login-form-button:hover {
+  background-color: #66b1ff;
+}
+
+/* Link */
+a {
+  color: #409eff;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Form item margin */
+nz-form-item {
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .parent {
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .login-form-button {
+    font-size: 15px;
+  }
+}
+
+// ========================================
+// VARIABLES
+// ========================================
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$accent-color: #f093fb;
+$success-color: #48bb78;
+$warning-color: #ed8936;
+$error-color: #f56565;
+$text-dark: #2d3748;
+$text-light: #718096;
+$white: #ffffff;
+$gray-100: #f7fafc;
+$gray-200: #edf2f7;
+$gray-300: #e2e8f0;
+$shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-heavy: 0 10px 15px rgba(0, 0, 0, 0.1);
+$border-radius: 16px;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ========================================
+// CONTAINER
+// ========================================
+.login-container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.login-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: $border-radius;
+  padding: 3rem;
+  box-shadow: $shadow-heavy;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 500px;
+  animation: fadeInUp 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+// ========================================
+// LOGIN HEADER
+// ========================================
+.login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  .login-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .login-subtitle {
+    color: $text-light;
+    font-size: 1.1rem;
+  }
+}
+
+// ========================================
+// FORM STYLES
+// ========================================
+.login-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .input-icon {
+    position: absolute;
+    left: 1rem;
+    color: $text-light;
+    z-index: 1;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 2px solid $gray-200;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    transition: $transition;
+    background: $white;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    &.error {
+      border-color: $error-color;
+      box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+    }
+
+    &::placeholder {
+      color: $text-light;
+    }
+  }
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  animation: fadeInUp 0.2s ease-out;
+}
+
+// ========================================
+// FORM ACTIONS
+// ========================================
+.form-actions {
+  margin-bottom: 2rem;
+}
+
+.login-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: #007bff;
+  color: $white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  &:not(:disabled):hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+  }
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+  }
+
+  &:not(:disabled):hover .btn-icon {
+    transform: translateX(5px);
+  }
+}
+
+// ========================================
+// REGISTER LINKS
+// ========================================
+.register-links {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid $gray-200;
+
+  .register-text {
+    color: $text-light;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+.register-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: $border-radius;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: $transition;
+  border: 2px solid transparent;
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+    transition: $transition;
+  }
+
+  &:hover .btn-icon {
+    transform: translateX(3px);
+  }
+
+  &.client-btn {
+    background: #007bff;
+    color: $white;
+
+    &:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+  }
+
+  &.company-btn {
+    background: #007bff;
+    color: $white;
+
+    &:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ========================================
+// ANIMATIONS
+// ========================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ========================================
+// RESPONSIVE DESIGN
+// ========================================
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .login-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-header .login-title {
+    font-size: 2rem;
+  }
+
+  .register-buttons {
+    flex-direction: column;
+  }
+
+  .register-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-header .login-title {
+    font-size: 1.75rem;
+  }
+
+  .input-wrapper .form-input {
+    padding: 0.875rem 0.875rem 0.875rem 2.5rem;
+  }
+
+  .input-wrapper .input-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}

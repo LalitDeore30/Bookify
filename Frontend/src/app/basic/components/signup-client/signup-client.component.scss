@@ -1,0 +1,273 @@
+/* Signup Container */
+.signup-container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.signup-card {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  border: 1px solid #e9ecef;
+  position: relative;
+}
+
+/* Header */
+.signup-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.signup-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.title-icon {
+  font-size: 2rem;
+  color: #667eea;
+}
+
+.signup-subtitle {
+  font-size: 1.1rem;
+  color: #718096;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Form */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Form Labels */
+nz-form-label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+/* Input Groups */
+nz-input-group {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+input[nz-input] {
+  height: 50px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+}
+
+input[nz-input]:focus {
+  border-color: #667eea;
+  background: white;
+  outline: none;
+}
+
+input[nz-input]:hover {
+  border-color: #cbd5e0;
+}
+
+/* Error Messages */
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.password-requirements {
+  margin-top: 8px;
+}
+
+.password-requirements p {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.password-requirements ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.password-requirements li {
+  margin-bottom: 4px;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+.strength-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Submit Section */
+.submit-section {
+  margin-top: 20px;
+}
+
+.submit-button {
+  width: 100%;
+  height: 55px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: #007bff;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  background: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Login Link */
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+  color: #718096;
+  font-size: 1rem;
+}
+
+.link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
+/* Form Items */
+nz-form-item {
+  margin-bottom: 0;
+}
+
+nz-form-control {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signup-container {
+    padding: 15px;
+  }
+
+  .signup-card {
+    padding: 30px 25px;
+    border-radius: 16px;
+  }
+
+  .signup-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .title-icon {
+    font-size: 1.5rem;
+  }
+
+  .signup-subtitle {
+    font-size: 1rem;
+  }
+
+  input[nz-input] {
+    height: 45px;
+    font-size: 0.95rem;
+  }
+
+  .submit-button {
+    height: 50px;
+    font-size: 1rem;
+  }
+
+  .strength-text {
+    min-width: 100px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-card {
+    padding: 25px 20px;
+  }
+
+  .signup-title {
+    font-size: 1.6rem;
+  }
+
+  .signup-form {
+    gap: 20px;
+  }
+
+  input[nz-input] {
+    height: 42px;
+  }
+
+  .submit-button {
+    height: 45px;
+    font-size: 0.95rem;
+  }
+}

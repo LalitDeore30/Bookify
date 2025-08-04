@@ -1,0 +1,228 @@
+/* General Styling for the Container */
+.bg {
+  background-color: #f8f9fa; /* Light background for the overall page */
+  padding: 20px;
+  min-height: calc(100vh - 64px); /* Assuming a header/footer of 64px, adjust as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the ad cards horizontally */
+}
+
+.ads-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.ads-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.ads-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Styling for Individual Ad Cards */
+.child {
+  background-color: #ffffff;
+  border-radius: 12px; /* Softer rounded corners */
+  border: 1px solid #e9ecef; /* Clean border instead of shadow */
+  padding: 25px;
+  margin-bottom: 20px; /* Space between ad cards */
+  width: 100%;
+  max-width: 800px; /* Max width for consistent card size */
+  box-sizing: border-box; /* Include padding in width */
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out; /* Smooth transitions */
+}
+
+.child:hover {
+  transform: translateY(-3px); /* Slight lift on hover */
+  border-color: #007bff; /* Blue border on hover */
+}
+
+/* Row Layout within Card */
+.child .nz-row {
+  display: flex; /* Ensure flex behavior for nz-row */
+  align-items: flex-start; /* Align items to the top */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px; /* Gap between image and content column */
+}
+
+/* Image Column Styling */
+.child .nz-col[nzSpan="8"] {
+  flex: 0 0 auto; /* Prevent shrinking/growing */
+  width: 200px; /* Fixed width for the image column */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.child .profile {
+  height: 130px;
+  width: 200px;
+  object-fit: cover; /* Cover the area, maintaining aspect ratio */
+  border-radius: 10px; /* Match card border radius */
+  border: 1px solid #e0e0e0; /* Light border for definition */
+}
+
+/* Content Column Styling */
+.child .nz-col[nzSpan="16"] {
+  flex-grow: 1; /* Allow content column to take remaining space */
+  min-width: 280px; /* Minimum width before wrapping */
+}
+
+.child h2 {
+  font-size: 1.6em;
+  color: #1a1a1a; /* Clean black text */
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.child h2:hover {
+  color: #007bff; /* Blue highlight color on hover */
+}
+
+.child h5 {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.child h5 b {
+  color: #333; /* Slightly darker for emphasis */
+  font-weight: 600;
+}
+
+.child hr {
+  border: none;
+  border-top: 1px solid #f0f0f0; /* Lighter separator */
+  margin: 15px 0;
+}
+
+/* Button Container */
+.child div[style="float: right;"] {
+  display: flex; /* Use flexbox for button alignment */
+  justify-content: flex-end; /* Align buttons to the right */
+  align-items: center;
+  margin-top: 20px; /* Space above buttons */
+}
+
+/* Button Styling (Ng-Zorro defaults are good, but we can enhance) */
+.child button[nz-button] {
+  border-radius: 6px; /* Slightly more rounded buttons */
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.child button[nzType="primary"] {
+  background-color: #007bff; /* Clean blue primary */
+  border-color: #007bff;
+  color: #fff;
+}
+
+.child button[nzType="primary"]:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.child button[nzType="default"] {
+  background-color: transparent;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.child button[nzType="default"]:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.child button[nzDanger] {
+  background-color: #ff4d4f; /* Ng-Zorro default danger */
+  border-color: #ff4d4f;
+  color: #fff;
+}
+
+.child button[nzDanger]:hover {
+  background-color: #ff7875;
+  border-color: #ff7875;
+  box-shadow: 0 2px 8px rgba(255, 77, 79, 0.2);
+}
+
+.child button[style="margin-left: 10px;"] {
+  margin-left: 10px; /* Keep existing margin */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .child {
+    padding: 20px;
+  }
+
+  .child .nz-row {
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center; /* Center items when stacked */
+    gap: 15px;
+  }
+
+  .child .nz-col[nzSpan="8"] {
+    width: 100%; /* Image takes full width */
+    max-width: 250px; /* Limit image size for better look */
+  }
+
+  .child .profile {
+    width: 100%;
+    height: 150px; /* Adjust height for better display */
+  }
+
+  .child .nz-col[nzSpan="16"] {
+    width: 100%; /* Content takes full width */
+    min-width: unset;
+    text-align: center; /* Center text when stacked */
+  }
+
+  .child h2 {
+    font-size: 1.4em;
+  }
+
+  .child div[style="float: right;"] {
+    float: none; /* Remove float */
+    justify-content: center; /* Center buttons */
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .child button[nz-button] {
+    width: auto; /* Allow buttons to size naturally */
+    padding: 8px 18px; /* Slightly smaller padding */
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .bg {
+    padding: 10px;
+  }
+  .child {
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .child .profile {
+    height: 120px;
+  }
+  .child h2 {
+    font-size: 1.2em;
+  }
+  .child h5 {
+    font-size: 0.9em;
+  }
+  .child hr {
+    margin: 10px 0;
+  }
+}

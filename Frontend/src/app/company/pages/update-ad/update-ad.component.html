@@ -1,0 +1,119 @@
+<div class="update-ad-container">
+  <div class="form-wrapper">
+    <div class="form-header">
+      <h1 class="form-title">Update Advertisement</h1>
+      <p class="form-subtitle">Modify your service details and image</p>
+    </div>
+
+    <form [formGroup]="validateForm" (ngSubmit)="updateAd()" class="ad-form">
+      <!-- File Upload Section -->
+      <div class="file-upload-section">
+        <div class="file-upload-area" (click)="fileInput.click()" [class.has-file]="selectedFile">
+          <div class="upload-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+          </div>
+          <div class="upload-text">
+            <h3>{{ selectedFile ? 'New File Selected' : 'Update Service Image' }}</h3>
+            <p>{{ selectedFile ? selectedFile.name : 'Click to browse or drag and drop' }}</p>
+          </div>
+          <input
+            #fileInput
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            style="display: none;"
+          />
+        </div>
+
+        <!-- Image Previews -->
+        <div class="image-previews">
+          <!-- New Image Preview -->
+          <div *ngIf="imagePreview" class="image-preview-container">
+            <h4>New Image Preview</h4>
+            <div class="preview-image-wrapper">
+              <img [src]="imagePreview" alt="New Preview" class="preview-image" />
+              <button type="button" class="remove-image" (click)="removeNewImage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Existing Image Preview -->
+          <div *ngIf="existingImage && !imgChanged" class="image-preview-container">
+            <h4>Current Image</h4>
+            <div class="preview-image-wrapper existing">
+              <img [src]="existingImage" alt="Current Image" class="preview-image" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="form-fields">
+        <div class="form-group">
+          <label for="serviceName" class="form-label">Service Name *</label>
+          <input
+            id="serviceName"
+            type="text"
+            formControlName="serviceName"
+            class="form-input"
+            placeholder="Enter your service name"
+            [class.error]="validateForm.get('serviceName')?.invalid && validateForm.get('serviceName')?.touched"
+          />
+          <div *ngIf="validateForm.get('serviceName')?.invalid && validateForm.get('serviceName')?.touched" class="error-message">
+            Service name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description" class="form-label">Description *</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            class="form-textarea"
+            placeholder="Describe your service in detail"
+            rows="4"
+            [class.error]="validateForm.get('description')?.invalid && validateForm.get('description')?.touched"
+          ></textarea>
+          <div *ngIf="validateForm.get('description')?.invalid && validateForm.get('description')?.touched" class="error-message">
+            Description is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price" class="form-label">Price *</label>
+          <div class="price-input-wrapper">
+            <span class="currency-symbol">$</span>
+            <input
+              id="price"
+              type="number"
+              formControlName="price"
+              class="form-input price-input"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              [class.error]="validateForm.get('price')?.invalid && validateForm.get('price')?.touched"
+            />
+          </div>
+          <div *ngIf="validateForm.get('price')?.invalid && validateForm.get('price')?.touched" class="error-message">
+            Valid price is required
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="submit" class="submit-btn" [disabled]="validateForm.invalid">
+          <span>Update Advertisement</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

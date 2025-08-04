@@ -1,0 +1,674 @@
+/* General Body and Container Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  /* A modern, clean font */
+  background-color: #f8f9fa;
+  /* Light grey background for a soft feel */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.child {
+  background-color: #ffffff;
+  /* White background for the form card */
+  border-radius: 12px;
+  /* Softer, rounded corners */
+  border: 1px solid #e9ecef;
+  /* Clean border instead of shadow */
+  padding: 40px;
+  max-width: 600px;
+  /* Limit width for better readability */
+  width: 100%;
+  box-sizing: border-box;
+  /* Include padding in width */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Styles */
+.imgDiv {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.imgDiv h2 {
+  color: #333;
+  /* Darker text for headings */
+  font-size: 2.2em;
+  /* Slightly larger heading */
+  font-weight: 700;
+  /* Bold */
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+  /* To allow pseudo-element for underline effect */
+  margin-left: 0 !important;
+  /* Override inline style if necessary */
+}
+
+.imgDiv h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  /* Adjust based on desired spacing */
+  transform: translateX(-50%);
+  width: 60px;
+  /* Underline width */
+  height: 4px;
+  /* Underline thickness */
+  background-color: #1890ff;
+  /* Ant Design primary color */
+  border-radius: 2px;
+}
+
+
+/* Form Element Spacing and Appearance */
+nz-form-item {
+  margin-bottom: 25px;
+  /* More vertical space between form items */
+}
+
+nz-form-control {
+  width: 100%;
+  /* Ensure form controls take full width */
+}
+
+/* Input and Textarea Styles */
+input[nz-input],
+textarea[nz-input] {
+  padding: 12px 15px;
+  /* Consistent padding */
+  border-radius: 8px;
+  /* Slightly more rounded corners for inputs */
+  border: 1px solid #d9d9d9;
+  /* Light grey border */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+}
+
+input[nz-input]:hover,
+textarea[nz-input]:hover {
+  border-color: #40a9ff;
+  /* Ant Design blue on hover */
+}
+
+input[nz-input]:focus,
+textarea[nz-input]:focus {
+  border-color: #40a9ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  /* Soft blue glow on focus */
+  outline: none;
+  /* Remove default outline */
+}
+
+textarea[nz-input] {
+  resize: vertical;
+  /* Allow vertical resizing for textareas */
+  min-height: 50px;
+  /* Minimum height for description */
+  line-height: 1.5;
+  /* Better line spacing for textareas */
+}
+
+/* File Upload Styles */
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  /* Stack label and previews */
+  align-items: center;
+  /* Center items horizontally */
+  margin-bottom: 30px;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center the select file text and button */
+  width: 100%;
+  cursor: pointer;
+  background-color: #1890ff;
+  /* Ant Design primary color */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(24, 144, 255, 0.2);
+}
+
+.file-upload-label:hover {
+  background-color: #40a9ff;
+  /* Lighter blue on hover */
+  box-shadow: 0 6px 15px rgba(24, 144, 255, 0.3);
+}
+
+.file-upload-label input[type="file"] {
+  display: none;
+  /* Hide the default file input */
+}
+
+.file-upload-label span {
+  margin-left: 0 !important;
+  /* Remove specific margin to align better */
+  margin-right: 10px;
+  /* Space between text and button if needed */
+}
+
+.image-preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.circle-image {
+  width: 150px;
+  /* Size of the circular image container */
+  height: 150px;
+  border-radius: 50%;
+  /* Make it a circle */
+  overflow: hidden;
+  /* Hide anything outside the circle */
+  border: 4px solid #1890ff;
+  /* Border around the image */
+  display: inline-flex;
+  /* Use flex to center image inside */
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Soft shadow for the image */
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Crop and cover the area */
+  display: block;
+  /* Remove extra space below image */
+}
+
+/* Button Styles */
+.login-form-button {
+  width: 100%;
+  /* Full width button */
+  height: 48px;
+  /* Taller button for easier clicking */
+  font-size: 1.1em;
+  font-weight: 600;
+  border-radius: 8px;
+  /* Rounded button corners */
+  margin-top: 20px;
+  /* Space above button */
+  background-color: #007bff;
+  /* Clean blue primary color */
+  border-color: #007bff;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-form-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: translateY(-2px);
+  /* Slight lift on hover */
+}
+
+.login-form-button:active {
+  transform: translateY(0);
+  /* Press down effect */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .child {
+    padding: 25px;
+    margin: 15px;
+    /* Add margin on smaller screens */
+  }
+
+  .imgDiv h2 {
+    font-size: 1.8em;
+  }
+
+  .circle-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .file-upload-label {
+    padding: 10px 15px;
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .child {
+    padding: 20px;
+  }
+
+  .imgDiv h2 {
+    font-size: 1.5em;
+  }
+
+  .circle-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .login-form-button {
+    height: 44px;
+    font-size: 1em;
+  }
+}
+
+// ========================================
+// VARIABLES
+// ========================================
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$accent-color: #f093fb;
+$success-color: #48bb78;
+$warning-color: #ed8936;
+$error-color: #f56565;
+$text-dark: #2d3748;
+$text-light: #718096;
+$white: #ffffff;
+$gray-100: #f7fafc;
+$gray-200: #edf2f7;
+$gray-300: #e2e8f0;
+$shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-heavy: 0 10px 15px rgba(0, 0, 0, 0.1);
+$border-radius: 16px;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ========================================
+// CONTAINER
+// ========================================
+.update-ad-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: $border-radius;
+  padding: 3rem;
+  box-shadow: $shadow-heavy;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 700px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// ========================================
+// FORM HEADER
+// ========================================
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  .form-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .form-subtitle {
+    color: $text-light;
+    font-size: 1.1rem;
+  }
+}
+
+// ========================================
+// FILE UPLOAD SECTION
+// ========================================
+.file-upload-section {
+  margin-bottom: 2rem;
+}
+
+.file-upload-area {
+  border: 2px dashed $gray-300;
+  border-radius: $border-radius;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: $transition;
+  background: $gray-100;
+
+  &:hover {
+    border-color: $primary-color;
+    background: rgba(102, 126, 234, 0.05);
+  }
+
+  &.has-file {
+    border-color: $success-color;
+    background: rgba(72, 187, 120, 0.05);
+  }
+
+  .upload-icon {
+    margin-bottom: 1rem;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      color: $primary-color;
+    }
+  }
+
+  .upload-text {
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $text-light;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// ========================================
+// IMAGE PREVIEWS
+// ========================================
+.image-previews {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.image-preview-container {
+  animation: fadeInUp 0.3s ease-out;
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
+.preview-image-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $shadow-medium;
+  width: 100%;
+
+  .preview-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  &.existing {
+    border: 2px solid $gray-300;
+  }
+
+  .remove-image {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(245, 101, 101, 0.9);
+    color: $white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      background: $error-color;
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// ========================================
+// FORM FIELDS
+// ========================================
+.form-fields {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid $gray-200;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  transition: $transition;
+  background: $white;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  &.error {
+    border-color: $error-color;
+    box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+  }
+
+  &::placeholder {
+    color: $text-light;
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.price-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .currency-symbol {
+    position: absolute;
+    left: 1rem;
+    color: $text-light;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  .price-input {
+    padding-left: 2rem;
+  }
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  animation: fadeInUp 0.2s ease-out;
+}
+
+// ========================================
+// FORM ACTIONS
+// ========================================
+.form-actions {
+  text-align: center;
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: $white;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  position: relative;
+  overflow: hidden;
+
+  &:disabled {
+    background: $gray-300;
+    color: $text-light;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  &:not(:disabled):hover {
+    background: linear-gradient(135deg, $secondary-color, $primary-color);
+    transform: translateY(-2px);
+    box-shadow: $shadow-medium;
+  }
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+    transition: $transition;
+  }
+
+  &:not(:disabled):hover .btn-icon {
+    transform: translateX(5px);
+  }
+}
+
+// ========================================
+// ANIMATIONS
+// ========================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ========================================
+// RESPONSIVE DESIGN
+// ========================================
+@media (max-width: 768px) {
+  .update-ad-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .form-wrapper {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-header .form-title {
+    font-size: 2rem;
+  }
+
+  .file-upload-area {
+    padding: 2rem 1rem;
+
+    .upload-icon svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .upload-text h3 {
+      font-size: 1.1rem;
+    }
+  }
+
+  .image-previews {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .preview-image-wrapper .preview-image {
+    height: 150px;
+  }
+
+  .submit-btn {
+    padding: 0.875rem 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-wrapper {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-header .form-title {
+    font-size: 1.75rem;
+  }
+
+  .file-upload-area {
+    padding: 1.5rem 1rem;
+  }
+
+  .preview-image-wrapper .preview-image {
+    height: 120px;
+  }
+}

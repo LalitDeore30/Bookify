@@ -1,0 +1,126 @@
+/* Client Bookings Styling */
+.bookings-container {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 2rem;
+}
+
+.bookings-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.bookings-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.bookings-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Table Styling */
+::ng-deep {
+  .ant-table {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+  }
+
+  .ant-table-thead > tr > th {
+    background: #1a1a1a;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.95rem;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .ant-table-tbody > tr:hover > td {
+    background: #f8f9fa;
+  }
+
+  .ant-table-tbody > tr:last-child > td {
+    border-bottom: none;
+  }
+
+  /* Button Styling */
+  .ant-btn {
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .ant-btn-primary.ant-btn-dangerous {
+    background: #007bff;
+
+    &:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+  }
+
+  .ant-btn-primary {
+    background: #007bff;
+
+    &:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+  }
+
+  .ant-btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    margin: 0.5rem 0.25rem;
+  }
+}
+
+/* Status Styling */
+.status-pending {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.status-approved {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.status-rejected {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bookings-container {
+    padding: 1rem;
+  }
+
+  .bookings-title {
+    font-size: 2rem;
+  }
+
+  ::ng-deep {
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+<div class="reviews-container" style="padding: 20px;">
+  <!-- Ad Details Header -->
+  <div class="ad-header" style="margin-bottom: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+    <h2 style="color: #108ee9; margin-bottom: 10px;">
+      Reviews for: {{ adDetails.serviceName }}
+    </h2>
+    <p style="color: #666; margin: 0;">
+      <strong>Price:</strong> ${{ adDetails.price }} | 
+      <strong>Total Reviews:</strong> {{ reviews.length }}
+    </p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" style="text-align: center; padding: 40px;">
+    <nz-spin nzSize="large"></nz-spin>
+    <p style="margin-top: 10px;">Loading reviews...</p>
+  </div>
+
+  <!-- No Reviews State -->
+  <div *ngIf="!loading && reviews.length === 0" style="text-align: center; padding: 40px;">
+    <nz-empty 
+      nzNotFoundImage="simple" 
+      nzNotFoundContent="No reviews yet for this service">
+    </nz-empty>
+  </div>
+
+  <!-- Reviews List -->
+  <div *ngIf="!loading && reviews.length > 0" class="reviews-list">
+    <div 
+      *ngFor="let review of reviews" 
+      class="review-card" 
+      style="margin-bottom: 20px; padding: 20px; border: 1px solid #e8e8e8; border-radius: 8px; background: white;">
+      
+      <!-- Review Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div>
+          <h4 style="margin: 0; color: #333;">{{ review.userName }}</h4>
+          <small style="color: #999;">{{ formatDate(review.reviewDate) }}</small>
+        </div>
+        
+        <!-- Star Rating -->
+        <div class="rating" style="display: flex; align-items: center;">
+          <span 
+            *ngFor="let star of getStarArray(review.rating)" 
+            style="color: #fadb14; font-size: 18px; margin-right: 2px;">
+            {{ star ? '★' : '☆' }}
+          </span>
+          <span style="margin-left: 8px; color: #666;">({{ review.rating }}/5)</span>
+        </div>
+      </div>
+
+      <!-- Review Content -->
+      <div class="review-content">
+        <p style="margin: 0; line-height: 1.6; color: #555;">
+          {{ review.review }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <div style="margin-top: 30px; text-align: center;">
+    <button 
+      nz-button 
+      nzType="default" 
+      routerLink="/company/ads"
+      style="padding: 0 30px;">
+      <i nz-icon nzType="arrow-left"></i>
+      Back to My Ads
+    </button>
+  </div>
+</div>
